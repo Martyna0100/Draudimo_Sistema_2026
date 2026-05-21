@@ -34,6 +34,14 @@ class OwnerController extends Controller
 
     public function update(Request $request, $id){
             $owner=Owner::find($id);
+            $owner->name = $request->name;
+            $owner->surname = $request->surname;
+            $owner->phone = $request->phone;
+            $owner->email = $request->email;
+            $owner->address = $request->address;
+            $owner->save();
+            return redirect()->route('owner.index');
+
     }
 
     public function destroy(Request $request, $id){

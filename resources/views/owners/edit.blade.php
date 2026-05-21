@@ -10,6 +10,7 @@
                 <div class="card-body">
                   <form action="{{route('owner.update', $owner->id)}}" method="post">
                       @csrf
+                      @method('put')
                       <div class="mb-3">
                           <label class="form-label">Vardas</label>
                           <input type="text" class="form-control" name="name" value="{{$owner->name}}">

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Savininkų sąrašas</div>
 
@@ -18,6 +18,7 @@
                             <th>Telefono numeris</th>
                             <th>El. paštas</th>
                             <th>Adresas</th>
+                            <th>Automobiliai</th>
                             <th>Veiksmai</th>
                         </tr>
                         </thead>
@@ -29,6 +30,11 @@
                                 <td>{{$owner->phone}}</td>
                                 <td>{{$owner->email}}</td>
                                 <td>{{$owner->address}}</td>
+                                <td>
+                                    @foreach($owner->cars as $car)
+                                        <div>{{$car->reg_number}}</div>
+                                    @endforeach
+                                </td>
                                 <td>
                                     <a href="{{route('owner.edit', $owner->id)}}" class="btn btn-info">Redaguoti</a>
                                     <a href="{{route('owner.destroy', $owner->id)}}" class="btn btn-danger">Ištrinti</a>

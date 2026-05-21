@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Savininkų sąrašas</div>
+                <div class="card-header">Savininko pridėjimas</div>
 
                 <div class="card-body">
                   <form action="{{route('owner.store')}}" method="post">
