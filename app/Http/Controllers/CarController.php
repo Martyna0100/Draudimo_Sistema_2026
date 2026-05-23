@@ -65,8 +65,9 @@ class CarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Car $car)
+    public function destroy(Request $request, $id)
     {
+        $car=Car::find($id);
         $car->delete();
         return redirect()->route('cars.index');
     }

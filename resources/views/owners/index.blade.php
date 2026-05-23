@@ -8,7 +8,9 @@
                 <div class="card-header">Savininkų sąrašas</div>
 
                 <div class="card-body">
-                  <a href="{{route('owner.create')}}" class="btn btn-success float-end">Pridėti naują savininką</a>
+                    @if(Auth::user()->type == 'admin')
+                        <a href="{{route('owner.create')}}" class="btn btn-success float-end">Pridėti naują savininką</a>
+                    @endif
                     <hr class="mt-5">
                     <table class="table">
                         <thead>
@@ -19,7 +21,9 @@
                             <th>El. paštas</th>
                             <th>Adresas</th>
                             <th>Automobiliai</th>
-                            <th>Veiksmai</th>
+                            @if(Auth::user()->type == 'admin')
+                                <th>Veiksmai</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -35,10 +39,12 @@
                                         <div>{{$car->reg_number}}</div>
                                     @endforeach
                                 </td>
+                                @if(Auth::user()->type == 'admin')
                                 <td>
                                     <a href="{{route('owner.edit', $owner->id)}}" class="btn btn-info">Redaguoti</a>
                                     <a href="{{route('owner.destroy', $owner->id)}}" class="btn btn-danger">Ištrinti</a>
                                 </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>
