@@ -40,6 +40,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-link">
+                            <a class="nav-link" href="{{route('lang.changeLanguage', "lt")}}">LT</a>
+                        </li>
+                        <li class="nav-link">
+                            <a class="nav-link" href="{{route('lang.changeLanguage', "en")}}">EN</a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

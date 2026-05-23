@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class CarController extends Controller
 {
@@ -20,8 +21,10 @@ class CarController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        $locale = $request->session()->get('locale', App::getLocale());
+        App::setLocale($locale);
         $owners = Owner::all();
         return view('cars.create', compact('owners'));
     }

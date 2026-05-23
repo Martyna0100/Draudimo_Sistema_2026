@@ -5,24 +5,24 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Savininkų sąrašas</div>
+                <div class="card-header">{{__('owners.owners_list')}}</div>
 
                 <div class="card-body">
                     @if(Auth::user()->type == 'admin')
-                        <a href="{{route('owner.create')}}" class="btn btn-success float-end">Pridėti naują savininką</a>
+                        <a href="{{route('owner.create')}}" class="btn btn-success float-end">{{__('owners.add_new')}}</a>
                     @endif
                     <hr class="mt-5">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Vardas</th>
-                            <th>Pavardė</th>
-                            <th>Telefono numeris</th>
-                            <th>El. paštas</th>
-                            <th>Adresas</th>
-                            <th>Automobiliai</th>
+                            <th>{{__('owners.name')}}</th>
+                            <th>{{__('owners.surname')}}</th>
+                            <th>{{__('owners.phone')}}</th>
+                            <th>{{__('owners.email')}}</th>
+                            <th>{{__('owners.address')}}</th>
+                            <th>{{__('owners.cars')}}</th>
                             @if(Auth::user()->type == 'admin')
-                                <th>Veiksmai</th>
+                                <th>{{__('owners.actions')}}</th>
                             @endif
                         </tr>
                         </thead>
@@ -41,8 +41,8 @@
                                 </td>
                                 @if(Auth::user()->type == 'admin')
                                 <td>
-                                    <a href="{{route('owner.edit', $owner->id)}}" class="btn btn-info">Redaguoti</a>
-                                    <a href="{{route('owner.destroy', $owner->id)}}" class="btn btn-danger">Ištrinti</a>
+                                    <a href="{{route('owner.edit', $owner->id)}}" class="btn btn-info">{{__('owners.edit')}}</a>
+                                    <a href="{{route('owner.destroy', $owner->id)}}" class="btn btn-danger">{{__('owners.delete')}}</a>
                                 </td>
                                 @endif
                             </tr>

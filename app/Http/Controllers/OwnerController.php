@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\Testas;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class OwnerController extends Controller
 {
     public function __construct(){
-        $this->middleware(Testas::class);
+        //$this->middleware(Testas::class);
     }
 
-    public function index(){
-            $owners = Owner::all();
-            return view('owners.index', compact('owners'));
+    public function index(Request $request){
+        $locale = $request->session()->get('locale', App::getLocale());
+        App::setLocale($locale);
+        $owners = Owner::all();
+        return view('owners.index', compact('owners'));
     }
 
     public function create(){
@@ -53,5 +56,10 @@ class OwnerController extends Controller
         $owner=Owner::find($id);
         $owner->delete();
         return redirect()->route('owner.index');
+    }
+
+    public function changeLanguage($lang, Request $request){
+        $request->session()->put('locale', $lang);
+        return redirect()->back();
     }
 }

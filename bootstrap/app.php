@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->append(\App\Http\Middleware\Testas::class);
+        $middleware->web(append: [
+            \App\Http\Middleware\SetLanguage::class
+        ]);
+        // $middleware->append(\App\Http\Middleware\Testas::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 route::group(['middleware' => 'auth'], function () {
     Route::get('/', [OwnerController::class, 'index'])->name('owner.index');
+    Route::get('/changeLanguage/{lang}', [OwnerController::class, 'changeLanguage'])->name('lang.changeLanguage');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('cars', CarController::class)->only(['index']);
 
