@@ -11,5 +11,18 @@
     "Adding new car": "Automobilio pridėjimas",
     "Add": "Pridėti",
     "Edit car": "Automobilio redagavimas",
-    "Update entries": "Atnaujinti įrašus"
+    "Update entries": "Atnaujinti įrašus",
+    "Name is required": "Vardas yra privalomas",
+    "Surname is required and must be no longer than 24 characters": "Pavardė yra privaloma ir turi būti ne ilgesnė nei 24 simboliai",
+    "Phone number is required": "Telefono numeris yra privalomas",
+    "Email is required": "El. pašto adresas yra privalomas",
+    "Name must be no longer than 24 characters": "Vardas turi būti ne ilgesnis nei 24 simboliai",
+    "Phone number is already registered": "Šis telefono numeris jau užregistruotas",
+    "Email is already registered": "Šis el. pašto adresas jau užregistruotas",
+    "Invalid email address": "Neteisingas el. pašto adresas",
+    "Registration number is required": "Registracijos numeris yra privalomas",
+    "Registration number is already registered": "Šis registracijos numeris jau užregistruotas",
+    "Registration number must be no longer 7 characters": "Registracijos numeris turi būti ne ilgesnis nei 7 simboliai",
+    "Brand is required": "Markė yra privaloma",
+    "Model is required": "Modelis yra privalomas"
 }

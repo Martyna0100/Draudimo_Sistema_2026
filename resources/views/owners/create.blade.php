@@ -4,6 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list">
+                    @foreach($errors->all() as $error)
+                        <li class="list-item">{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{__('owners.adding_owner')}}</div>
 
@@ -12,23 +21,27 @@
                       @csrf
                       <div class="mb-3">
                           <label class="form-label">{{__('owners.name')}}</label>
-                          <input type="text" class="form-control" name="name" value="">
+                          <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{old('name')}}">
+                          <div class="invalid-feedback">@error('name') {{$message}} @enderror</div>
                       </div>
                       <div class="mb-3">
                           <label class="form-label">{{__('owners.surname')}}</label>
-                          <input type="text" class="form-control" name="surname" value="">
+                          <input type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{old('surname')}}">
+                          <div class="invalid-feedback">@error('surname') {{$message}} @enderror</div>
                       </div>
                       <div class="mb-3">
                           <label class="form-label">{{__('owners.phone')}}</label>
-                          <input type="text" class="form-control" name="phone" value="">
+                          <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{old('phone')}}">
+                          <div class="invalid-feedback">@error('phone') {{$message}} @enderror</div>
                       </div>
                       <div class="mb-3">
                           <label class="form-label">{{__('owners.email')}}</label>
-                          <input type="text" class="form-control" name="email" value="">
+                          <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email')}}">
+                          <div class="invalid-feedback">@error('email') {{$message}} @enderror</div>
                       </div>
                       <div class="mb-3">
                           <label class="form-label">{{__('owners.address')}}</label>
-                          <input type="text" class="form-control" name="address" value="">
+                          <input type="text" class="form-control" name="address" value="{{old('address')}}">
                       </div>
                       <button class="btn btn-success" type="submit">{{__('owners.add')}}</button>
                   </form>

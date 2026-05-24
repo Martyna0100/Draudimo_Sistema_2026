@@ -25,30 +25,45 @@ class OwnerController extends Controller
     }
 
     public function store(Request $request){
-            $owner = new Owner();
-            $owner->name = $request->name;
-            $owner->surname = $request->surname;
-            $owner->phone = $request->phone;
-            $owner->email = $request->email;
-            $owner->address = $request->address;
-            $owner->save();
+        $request->validate([
+            'name' => 'required|max:24',
+            'surname' => 'required|max:24',
+            'phone' => 'required|unique:owners,phone',
+            'email' => 'required|email|unique:owners,email',
+        ], [
+            'name.required' => __('Name is required'),
+            'name.max' => __('Name must be no longer than 24 characters'),
+            'surname' => __('Surname is required and must be no longer than 24 characters'),
+            'phone.required' => __('Phone number is required'),
+            'phone.unique' => __('Phone number is already registered'),
+            'email.required' => __('Email is required'),
+            'email.unique' => __('Email is already registered'),
+            'email.email' => __('Invalid email address')
+        ]);
+        $owner = new Owner();
+        $owner->name = $request->name;
+        $owner->surname = $request->surname;
+        $owner->phone = $request->phone;
+        $owner->email = $request->email;
+        $owner->address = $request->address;
+        $owner->save();
             return redirect()->route('owner.index');
     }
 
     public function edit($id){
-            $owner=Owner::find($id);
-            return view('owners.edit', compact('owner'));
+        $owner=Owner::find($id);
+        return view('owners.edit', compact('owner'));
     }
 
     public function update(Request $request, $id){
-            $owner=Owner::find($id);
-            $owner->name = $request->name;
-            $owner->surname = $request->surname;
-            $owner->phone = $request->phone;
-            $owner->email = $request->email;
-            $owner->address = $request->address;
-            $owner->save();
-            return redirect()->route('owner.index');
+        $owner=Owner::find($id);
+        $owner->name = $request->name;
+        $owner->surname = $request->surname;
+        $owner->phone = $request->phone;
+        $owner->email = $request->email;
+        $owner->address = $request->address;
+        $owner->save();
+        return redirect()->route('owner.index');
 
     }
 

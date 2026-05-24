@@ -34,6 +34,17 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'reg_number' => 'required|max:7, unique:cars,reg_number',
+            'brand' => 'required',
+            'model' => 'required',
+        ], [
+            'reg_number.required' => __('Registration number is required'),
+            'reg_number.unique' => __('Registration number is already registered'),
+            'reg_number.max' => __('Registration number must be no longer 7 characters'),
+            'brand' => __('Brand is required'),
+            'model' => __('Model is required')
+        ]);
         Car::create($request->all());
         return redirect()->route('cars.index');
     }
