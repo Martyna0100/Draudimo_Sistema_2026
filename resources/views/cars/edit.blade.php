@@ -8,7 +8,7 @@
                 <div class="card-header">{{__('Edit car')}}</div>
 
                 <div class="card-body">
-                  <form action="{{route('cars.update', $car->id)}}" method="post">
+                  <form action="{{route('cars.update', $car->id)}}" method="post" enctype="multipart/form-data">
                       @csrf
                       @method('put')
                       <div class="mb-3">
@@ -31,6 +31,18 @@
                               @endforeach
                           </select>
                       </div>
+                      <hr>
+                      @if($car->photo == null)
+                      <div class="mb-3">
+                          <label class="form-label">{{__('Photo:')}}</label>
+                          <input type="file" class="form-control" name="photo" value="">
+                      </div>
+                      @else
+                          <label class="form-label">{{__('Photo:')}}</label>
+                          <<img src="/storage/{{$car->photo}}" alt=""><br>
+                          <input type="file" class="form-control" name="photo" value="">
+                          <a class="btn btn-danger" href="{{route('cars.deletePhoto', $car->id)}}">{{__('Delete photo:')}}</a>
+                      @endif
                       <button class="btn btn-success" type="submit">{{__('Update entries')}}</button>
                   </form>
                 </div>

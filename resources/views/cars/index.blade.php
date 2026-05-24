@@ -15,6 +15,7 @@
                     <table class="table">
                         <thead>
                         <tr>
+                            <th style="width:300px;"></th>
                             <th>{{__('Registration number')}}</th>
                             <th>{{__('Brand')}}</th>
                             <th>{{__('Model')}}</th>
@@ -27,6 +28,11 @@
                         <tbody>
                         @foreach($cars as $car)
                             <tr>
+                                <td>
+                                    @if($car->photo != null)
+                                    <img src="/storage/{{$car->photo}}" alt="" width="100%">
+                                    @endif
+                                </td>
                                 <td>{{$car->reg_number}}</td>
                                 <td>{{$car->brand}}</td>
                                 <td>{{$car->model}}</td>

@@ -73,6 +73,11 @@ class CarController extends Controller
     {
         $car->update($request->all());
         $car->save();
+        if($request->hasFile('photo')){
+            $request->file('photo')->store('/app/public');
+            $car->photo=$request->file('photo')->hashName();
+            $car->save();
+        }
         return redirect()->route('cars.index');
     }
 
@@ -84,5 +89,16 @@ class CarController extends Controller
         $car=Car::find($id);
         $car->delete();
         return redirect()->route('cars.index');
+    }
+
+    public function deletePhoto($id)
+    {
+        $car=Car::find($id);
+        if($car->photo != null){
+            unlink(storage_path().'/app/public/'.$car->photo);
+            $car->photo = null;
+            $car->save();
+        }
+        return redirect()->back();
     }
 }

@@ -20,6 +20,7 @@ route::group(['middleware' => 'auth'], function () {
         Route::get('/Owner/{id}/destroy', [OwnerController::class, 'destroy'])->name('owner.destroy');
         Route::resource('cars', CarController::class)->except(['index', 'destroy']);
         Route::get('/Car/{id}/destroy', [CarController::class, 'destroy'])->name('cars.destroy');
+        Route::get('Car/{car}/deletePhoto', [CarController::class, 'deletePhoto'])->name('cars.deletePhoto');
     });
 });
 

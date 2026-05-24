@@ -1,22 +1,27 @@
 <?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Savininkų sąrašas</div>
+                <div class="card-header"><?php echo e(__('owners.owners_list')); ?></div>
 
                 <div class="card-body">
-                  <a href="<?php echo e(route('owner.create')); ?>" class="btn btn-success float-end">Pridėti naują savininką</a>
+                    <?php if(Auth::user()->type == 'admin'): ?>
+                        <a href="<?php echo e(route('owner.create')); ?>" class="btn btn-success float-end"><?php echo e(__('owners.add_new')); ?></a>
+                    <?php endif; ?>
                     <hr class="mt-5">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Vardas</th>
-                            <th>Pavardė</th>
-                            <th>Telefono numeris</th>
-                            <th>El. paštas</th>
-                            <th>Adresas</th>
-                            <th>Veiksmai</th>
+                            <th><?php echo e(__('owners.name')); ?></th>
+                            <th><?php echo e(__('owners.surname')); ?></th>
+                            <th><?php echo e(__('owners.phone')); ?></th>
+                            <th><?php echo e(__('owners.email')); ?></th>
+                            <th><?php echo e(__('owners.address')); ?></th>
+                            <th><?php echo e(__('owners.cars')); ?></th>
+                            <?php if(Auth::user()->type == 'admin'): ?>
+                                <th><?php echo e(__('owners.actions')); ?></th>
+                            <?php endif; ?>
                         </tr>
                         </thead>
                         <tbody>
@@ -28,9 +33,16 @@
                                 <td><?php echo e($owner->email); ?></td>
                                 <td><?php echo e($owner->address); ?></td>
                                 <td>
-                                    <a href="<?php echo e(route('owner.edit', $owner->id)); ?>" class="btn btn-info">Redaguoti</a>
-                                    <a href="<?php echo e(route('owner.destroy', $owner->id)); ?>" class="btn btn-danger">Ištrinti</a>
+                                    <?php $__currentLoopData = $owner->cars; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $car): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div><?php echo e($car->reg_number); ?></div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </td>
+                                <?php if(Auth::user()->type == 'admin'): ?>
+                                <td>
+                                    <a href="<?php echo e(route('owner.edit', $owner->id)); ?>" class="btn btn-info"><?php echo e(__('owners.edit')); ?></a>
+                                    <a href="<?php echo e(route('owner.destroy', $owner->id)); ?>" class="btn btn-danger"><?php echo e(__('owners.delete')); ?></a>
+                                </td>
+                                <?php endif; ?>
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
