@@ -31,11 +31,22 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a href="<?php echo e(route('owner.index')); ?>" class="nav-link">Savininkai</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo e(route('cars.index')); ?>" class="nav-link">Automobiliai</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-link">
+                            <a class="nav-link" href="<?php echo e(route('lang.changeLanguage', "lt")); ?>">LT</a>
+                        </li>
+                        <li class="nav-link">
+                            <a class="nav-link" href="<?php echo e(route('lang.changeLanguage', "en")); ?>">EN</a>
+                        </li>
                         <!-- Authentication Links -->
                         <?php if(auth()->guard()->guest()): ?>
                             <?php if(Route::has('login')): ?>
